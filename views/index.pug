@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+  p The title of the page is #{title} 
+  button(type="button", class="btn btn-success" onclick = "double()") Press Me
+  div(id="double") Up the amount
+  script.
+    var value = 0;
+    var power = 1;
+    function double(){
+        value++;
+        power *= 2;
+        var result = `Two to the power of ${value} is ${power}`;
+        document.getElementById('double').innerText = result;
+    }
+  

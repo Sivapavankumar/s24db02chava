@@ -1,0 +1,50 @@
+extends layout
+
+block content
+    h1= title
+    if (toShow == null)
+        h2 No instance to delete
+    else
+        - let Bankid = toShow._id
+        - let Bank_name = toShow.Bank_name
+        - let Bank_place = toShow.Bank_place
+        - let limit = toShow.limit
+        - let actionid = "/resource/Bank/" + Bankid
+        script.
+            let actionid = "#{actionid}"
+        div
+            div.row
+                div(class='BankAttr mr-3') Bank ID is:
+                div #{Bankid}
+            div.row
+                div(class='BankAttr mr-3') Bank Name is:
+                div #{Bank_name}
+            div.row
+                div(class='BankAttr mr-3') Bank Place is:
+                div #{Bank_place}
+            div.row
+                div(class='BankAttr mr-3') Limit is:
+                div #{limit}
+            button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+            button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+        script.
+            function cancel() {
+                // Go back to the home page for the Bank collection
+                window.location.href='/Bank';
+            }
+            function deleteOnid() {
+                console.log("starting delete");
+                // delete first
+                fetch(actionid, {
+                    method: 'DELETE' // Don't need a body for the delete
+                }).then((resp) => {
+                    return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                    alert("Delete succeeded");
+                    window.location.href='/Bank';
+                    // TODO handle body
+                }).catch((error) => {
+                    // TODO handle error
+                    alert("Delete failed " + error);
+                });
+            }

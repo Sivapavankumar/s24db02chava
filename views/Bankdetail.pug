@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    h1= title
+    if (toShow == null)
+       h2 No instance to detail 
+    else
+    - let Bankid = toShow._id
+    - let Bank_name = toShow.Bank_name
+    - let Bank_place = toShow.Bank_place
+    - let limit = toShow.limit
+    
+    div
+        div.row
+            div(class='BankAttr mr-3') Bank ID is:
+            div #{Bankid}
+        div.row
+            div(class='BankAttr mr-3') Bank Name is:
+            div #{Bank_name}
+        div.row
+            div(class='BankAttr mr-3') Bank Place is:
+            div #{Bank_place}
+        div.row
+            div(class='BankAttr mr-3') Limit is:
+            div #{limit}

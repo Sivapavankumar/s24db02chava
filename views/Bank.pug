@@ -2,8 +2,7 @@ extends layout
 
 block content
   h1= title
-  p #{title}
-  - let results = [{Bank_name:'Canara', Bank_place:'Komatinenivaripalem', limit: 2000000}, {Bank_name:'SBI', Bank_place:'Ongole', limit: 9000000}, {Bank_name:'HDFC', Bank_place:'Chilakaluripet', limit: 40000000}, {Bank_name:'Kotak', Bank_place:'Piduguralla', limit: 70000000}, {Bank_name:'ICICI', Bank_place:'Vijayawada', limit: 300000000}]
+  - let items = results
   div(class="container-fluid")
     div(class="row")
       each item, index in results  

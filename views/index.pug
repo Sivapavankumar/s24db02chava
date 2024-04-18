@@ -1,17 +1,12 @@
 extends layout
 
 block content
-  h1= title
-  p The title of the page is #{title} 
-  button(type="button", class="btn btn-success" onclick = "double()") Press Me
-  div(id="double") Up the amount
-  script.
-    var value = 0;
-    var power = 1;
-    function double(){
-        value++;
-        power *= 2;
-        var result = `Two to the power of ${value} is ${power}`;
-        document.getElementById('double').innerText = result;
-    }
-  
+  if !user
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if user
+    p You are currently logged in as #{user.username}
+    a(href="/Bank") Take me to Bank
+    br
+    a(href="/logout") Logout

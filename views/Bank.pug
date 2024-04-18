@@ -1,19 +1,29 @@
 extends layout
-
+ 
 block content
   h1= title
-  - let items = results
+  p Welcome to #{title}
+ 
+  - let create = `dispatch("/Bank/create")`
+  button.btn(class="btn-success ml-1", onclick=create) Create
+ 
+  - let item = results
+ 
   div(class="container-fluid")
     div(class="row m-1")
-      each item in items  
-        - let destination = `dispatch(\"/Bank/update?id=${item._id}\")`
-        div(class="row-sm-2", class="m-1") 
-          | Item #{item.Bank_name}(#{item.Bank_place}) is #{item.limit}
-          button.btn( class="btn-primary ml-1", onclick= destination) Update
-
+      each item, index in results
+        div(class="col-sm-2")
+          ul
+            li #{item.Bank_name}
+            li #{item.Bank_place}
+            li #{item.limit}
+          button.btn(class="btn-success ml-1", onclick=`dispatch("/Bank/update?id=${item._id}")`) Update
+          button.btn(class="btn-success ml-1", onclick=`dispatch("/Bank/detail?id=${item._id}")`) Detail
+          button.btn(class="btn-success ml-1", onclick=`dispatch("/Bank/delete?id=${item._id}")`) Delete
+ 
   script.
-    function dispatch(path){
-      window.location.href=path
+    function dispatch(path) {
+      window.location.href = path
     }
 
         
